@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Markdown.js</title>
     <script src="https://cdn.bootcss.com/showdown/1.8.2/showdown.min.js"></script>
-</head>
-<style>
-    blockquote {
-        border-left:#eee solid 5px;
-        padding-left:50px;
-        color: red;  // 恶搞引用样式  哈哈
+  </head>
+  <style>
+    .box {
+      display: flex; /*关键*/
     }
-    ul li {
-        line-height: 20px;
-    }
-    code {
-        color:#D34B62;
-        background: #F6F6F6;
-    }
-    #result {
-        width: 600px;
-        height: 400px;
-        float: right;
-        border: 1px solid red;
-    }
-</style>
-<body>
-<div>
-    <textarea id="oriContent" style="height:400px;width:600px;" onkeyup="convert()"></textarea>
-    <div id="result"></div>
-</div>
 
-<script type="text/javascript">
-function convert(){
-    var text = document.getElementById("oriContent").value;
-    var converter = new showdown.Converter();
-    var html = converter.makeHtml(text);
-    document.getElementById("result").innerHTML = html;
-}
-</script>
-</body>
+    .left {
+      flex: 1;
+      background-color: lightgray;
+      height: 400px;
+    }
+    .right {
+      flex: 1;
+      margin-left: 10px;
+      background-color: #f0f0f0;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <!-- markdown语法编辑区域 -->
+      <textarea id="oriContent" class="left" onkeyup="convert()"></textarea>
+      <!-- markdown语法预览区域 -->
+      <div id="result" class="right"></div>
+    </div>
+
+    <script type="text/javascript">
+      function convert() {
+        var text = document.getElementById("oriContent").value;
+        var converter = new showdown.Converter();
+        var html = converter.makeHtml(text);
+        document.getElementById("result").innerHTML = html;
+      }
+    </script>
+  </body>
 </html>
-
-
